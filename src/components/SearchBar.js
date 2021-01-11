@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
     }
 
     searchResults(searchTerm, page=1) {
-        var url = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}&type=movie&page=${page}`;
+        var url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTerm}&type=movie&page=${page}`;
         return fetch(url);
     }
 }
