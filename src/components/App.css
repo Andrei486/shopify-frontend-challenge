@@ -5,13 +5,11 @@
 }
 
 #nomination-list {
-    float: left;
-    display: block;
-    width: 40%;
+    flex-grow: 1;
 }
 
 .container {
-    width: 100%;
+    display: flex;
 }
 
 html, body{ 

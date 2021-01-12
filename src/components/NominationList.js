@@ -14,9 +14,6 @@ function NominationList(props) {
                 </li>
             );
         });
-        if (nominations.length === 5) {
-            message = <div class="alert alert-success" role="alert">Maximum number of nominations reached! Thank you!</div>;
-        }
     }
     return (
         <div id="nomination-list" className="bg-light m-2 p-2 border border-dark rounded">
