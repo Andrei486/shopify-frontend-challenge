@@ -11,10 +11,12 @@ class App extends React.Component {
         //get current url without query string
         let url = new URL(window.location.href);
         this.baseUrl = url.origin.concat(url.pathname);
+        //get cached nominations if any
+        let nominations = (localStorage["nominations"]) ? JSON.parse(localStorage["nominations"]) : [];
 
         this.state = {
             results: {"Response": "False", "Error": "Incorrect IMDb ID."},
-            nominations: [],
+            nominations: nominations,
             lastSearchTerm: "",
             resultsPage: 1
         }
@@ -54,7 +56,7 @@ class App extends React.Component {
 
     updateSearch(search, page=1) {
         /*Updates the search term and results. */
-        if (!search) {
+        if (search === null) {
             search = this.state.lastSearchTerm;
         }
         this.updateResults(search, page);
@@ -69,6 +71,7 @@ class App extends React.Component {
         let newNominations = this.state.nominations.slice();
         newNominations.push(movie);
         this.setState({nominations: newNominations});
+        this.updateNominationCache(newNominations);
     }
 
     removeNomination(movie) {
@@ -77,6 +80,11 @@ class App extends React.Component {
         let newNominations = this.state.nominations.slice();
         newNominations.splice(movieIndex, 1);
         this.setState({nominations: newNominations});
+        this.updateNominationCache(newNominations);
+    }
+
+    updateNominationCache(nominations) {
+        localStorage["nominations"] = JSON.stringify(nominations);
     }
 
     render() {

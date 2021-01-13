@@ -14,7 +14,7 @@ function MovieList(props) {
             let imdbLink = `https://www.imdb.com/title/${movie["imdbID"]}`;
             return (
                 <li key={movie["imdbID"]}>
-                    <span width="70%" className="mr-1">
+                    <span className="mr-1">
                     <a href={imdbLink} target="_blank" rel="noopener noreferrer">{movie["Title"]} ({movie["Year"]})</a>
                     </span>
                     <button disabled={disableStatus} onClick={() => props.Add(movie)}>Nominate</button>
