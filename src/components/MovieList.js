@@ -14,18 +14,20 @@ function MovieList(props) {
             let imdbLink = `https://www.imdb.com/title/${movie["imdbID"]}`;
             return (
                 <li key={movie["imdbID"]}>
+                    <span width="70%" className="mr-1">
                     <a href={imdbLink} target="_blank" rel="noopener noreferrer">{movie["Title"]} ({movie["Year"]})</a>
-                    <button disabled={disableStatus} onClick={() => props.Add(movie)}>Nominate this movie</button>
+                    </span>
+                    <button disabled={disableStatus} onClick={() => props.Add(movie)}>Nominate</button>
                 </li>
             );
         });
         totalResults = parseInt(movieResults["totalResults"]);
     }
     return (
-        <div id="movie-results" className="bg-light m-2 p-2 border border-dark rounded">
-            <h2 className="p-1">Search Results</h2>
+        <div id="movie-results" className="bg-light p-2 border border-dark rounded">
+            <h2>Search Results</h2>
+            <NavigationBar page={props.page} update={props.updateSearch} totalResults={totalResults}/>
             {messageDiv}
-            <NavigationBar page={props.page} update={props.updateSearch} totalResults={totalResults}/> 
             <ul>
                 {movieItems}
             </ul>

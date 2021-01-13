@@ -82,22 +82,22 @@ class App extends React.Component {
     render() {
         let banner = (this.state.nominations.length === 5) ? (
             <div id="max-nominations" className="banner alert alert-success"><span className="p-2">Maximum number of nominations reached, thank you!</span></div>
-        ) : "";
-        let shareLink = "";
-        if (this.state.lastSearchTerm !== "") {
+        ) : <div/>;
+        let shareLink = <div id="share-link"></div>;
+        if (this.state.lastSearchTerm !== "" && this.state.results["Response"] !== "False") {
             let url = new URL(this.baseUrl);
             url.search = `s=${this.state.lastSearchTerm}&page=${this.state.resultsPage}`;
-            shareLink = (<div id="share-link" className="p-2">Share this search: {url.toString()}</div>);
+            shareLink = `Share this search: ${url.toString()}`;
         }
         return (
             <div>
                 {banner}
-                <div className="p-2 m-2"> 
+                <div className="p-2 m-2">
                     <h1>OMDB Nominations</h1>
                     <SearchBar updateSearch={this.updateSearch}/>
-                    {shareLink}
+                    <div id="share-link" className="p-2">{shareLink}</div>
                 </div>
-                <div className="container m-0 bg-light">
+                <div className="container m-0">
                     <MovieList results={this.state.results}
                         nominations={this.state.nominations}
                         page={this.state.resultsPage}

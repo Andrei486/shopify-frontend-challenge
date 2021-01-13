@@ -1,6 +1,5 @@
 #movie-results {
     float: left;
-    display: block;
     width: 50%;
 }
 
@@ -8,10 +7,14 @@
     flex-grow: 1;
 }
 
-.container {
-    display: flex;
+#search-bar {
+    width: 400px;
 }
 
-html, body{ 
-    min-width:100%;
+#search-clear {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
 }
