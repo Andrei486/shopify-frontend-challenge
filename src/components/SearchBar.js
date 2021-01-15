@@ -14,7 +14,7 @@ function SearchBar(props) {
                 setValue("");
                 props.updateSearch("");
             }}>X</button>
-            <button id="search-submit" onClick={event => {props.updateSearch(null)}}>Search</button>
+            <button id="search-submit" onClick={event => {props.updateSearch(value)}}>Search</button>
         </div>
         
     );

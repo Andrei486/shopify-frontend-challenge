@@ -28,7 +28,7 @@ class App extends React.Component {
     componentDidMount() {
         let params = new URL(window.location.href).searchParams;
         let searchTerm = params.has("s") ? params.get("s") : "";
-        let page = params.has("page") ? params.get("page") : 1;
+        let page = params.has("page") ? parseInt(params.get("page")) : 1;
         this.updateSearch(searchTerm, page);
     }
 
@@ -67,7 +67,10 @@ class App extends React.Component {
     }
 
     addNomination(movie) {
-        /*Adds the given movie to the list of nominations; assumes the operation is possible. */
+        /*Adds the given movie to the list of nominations. */
+        if (this.state.nominations.length === 5) {
+            return;
+        }
         let newNominations = this.state.nominations.slice();
         newNominations.push(movie);
         this.setState({nominations: newNominations});
@@ -77,6 +80,9 @@ class App extends React.Component {
     removeNomination(movie) {
         /*Removes the given movie from the list of nominations; assumes the operation is possible. */
         let movieIndex = this.state.nominations.indexOf(movie);
+        if (this.state.nominations.length === 0 && movieIndex === -1) {
+            return;
+        }
         let newNominations = this.state.nominations.slice();
         newNominations.splice(movieIndex, 1);
         this.setState({nominations: newNominations});

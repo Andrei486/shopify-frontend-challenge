@@ -8,7 +8,7 @@ function NominationList(props) {
     } else {
         nominationItems = props.nominations.map(movie => {
             return (
-                <li key={movie["Title"]}>
+                <li key={movie["imdbID"]}>
                     <span className="mr-1">{movie["Title"]} ({movie["Year"]})</span>
                     <button onClick={() => props.Remove(movie)}>Remove</button>
                 </li>
